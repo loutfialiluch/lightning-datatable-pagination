@@ -18,6 +18,9 @@ export default class DataTablePagination extends LightningElement {
   hasPrevious = false;
   hasNext = true;
 
+  renderedCallback() {
+    this.setActivatedButton(this.currentPage);
+  }
   async connectedCallback() {
     this.todos = await this.fetchData();
     this.paginatedTodos = this.todos.slice(0, this.numberOfRowsPerPage);
@@ -27,6 +30,7 @@ export default class DataTablePagination extends LightningElement {
     for (let i = 0; i < this.numberOfPages; i++) {
       this.paginationButtons = [...this.paginationButtons, i + 1];
     }
+    this.setActivatedButton(this.currentPage);
   }
   async fetchData() {
     try {

@@ -1,0 +1,58 @@
+<template>
+  <template if:true={paginatedTodos}>
+    <div class="table">
+      <lightning-datatable
+        key-field="id"
+        data={paginatedTodos}
+        columns={columns}
+      >
+      </lightning-datatable>
+      <div class="pagination">
+        <template if:true={hasPrevious}>
+          <lightning-button
+            variant="brand-outline"
+            label="Previous"
+            onclick={handlePrevious}
+            class="slds-m-left_x-small"
+          ></lightning-button>
+        </template>
+        <template if:false={hasPrevious}>
+          <lightning-button
+            variant="brand-outline"
+            label="Previous"
+            onclick={handlePrevious}
+            class="slds-m-left_x-small"
+            disabled
+          ></lightning-button>
+        </template>
+        <!-- Pagination buttons-->
+        <template for:each={paginationButtons} for:item="paginationButton">
+          <lightning-button
+            key={paginationButton}
+            variant="brand-outline"
+            label={paginationButton}
+            onclick={paginate}
+            class="slds-m-left_x-small"
+          ></lightning-button>
+        </template>
+        <template if:true={hasNext}>
+          <lightning-button
+            variant="brand-outline"
+            label="Next"
+            onclick={handleNext}
+            class="slds-m-left_x-small"
+          ></lightning-button>
+        </template>
+        <template if:false={hasNext}>
+          <lightning-button
+            variant="brand-outline"
+            label="Next"
+            onclick={handleNext}
+            class="slds-m-left_x-small"
+            disabled
+          ></lightning-button>
+        </template>
+      </div>
+    </div>
+  </template>
+</template>
